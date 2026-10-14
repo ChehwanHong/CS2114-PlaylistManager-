@@ -1,4 +1,3 @@
-
 /**
  * Represents a playlist containing songs.
  *
@@ -103,5 +102,60 @@ public class Playlist {
     @Override
     public String toString() {
         return name + ": " + songs.toString();
+    }
+
+    /**
+     * Finds a song by its title, ignoring capitalization.
+     *
+     * @param title the title to search for
+     * @return the matching song, or null if not found
+     */
+    public Song findSong(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            return null;
+        }
+
+        for (int i = 0; i < songs.size(); i++) {
+            Song song = songs.get(i);
+
+            if (song.getTitle().equalsIgnoreCase(title.trim())) {
+                return song;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the number of songs in this playlist.
+     *
+     * @return the number of songs
+     */
+    public int size() {
+        return songs.size();
+    }
+
+    /**
+     * Returns the song at the specified index.
+     *
+     * @param index the zero-based song index
+     * @return the song at that index, or null if invalid
+     */
+    public Song getSong(int index) {
+        if (index < 0 || index >= songs.size()) {
+            return null;
+        }
+
+        return songs.get(index);
+    }
+
+    /**
+     * Returns a snapshot of the playlist's songs.
+     *
+     * @return an array containing the songs
+     */
+    public Song[] getSongs() {
+        Song[] songsSnapshot = new Song[songs.size()];
+        return songs.toArray(songsSnapshot);
     }
 }

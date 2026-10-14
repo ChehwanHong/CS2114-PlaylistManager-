@@ -97,4 +97,62 @@ public class PlaylistTest {
         assertTrue(playlist.toString().contains("Favorites"));
         assertTrue(playlist.toString().contains("Mirrors"));
     }
+    @Test
+    void findSongExisting() {
+        Playlist playlist = new Playlist("Favorites");
+        Song song = new Song("Mirrors", "Justin Timberlake", "Pop");
+        playlist.addSong(song);
+
+        assertEquals(song, playlist.findSong("Mirrors"));
+    }
+
+    @Test
+    void findSongIgnoresCaseAndSpaces() {
+        Playlist playlist = new Playlist("Favorites");
+        Song song = new Song("Mirrors", "Justin Timberlake", "Pop");
+        playlist.addSong(song);
+
+        assertEquals(song, playlist.findSong("  mirrors  "));
+    }
+
+    @Test
+    void findSongNotFoundOrInvalid() {
+        Playlist playlist = new Playlist("Favorites");
+        playlist.addSong(new Song("Mirrors", "Justin Timberlake", "Pop"));
+
+        assertNull(playlist.findSong("Unknown"));
+        assertNull(playlist.findSong(""));
+        assertNull(playlist.findSong(null));
+    }
+
+    @Test
+    void getSongValidAndInvalidIndex() {
+        Playlist playlist = new Playlist("Favorites");
+        Song song = new Song("Mirrors", "Justin Timberlake", "Pop");
+        playlist.addSong(song);
+
+        assertEquals(song, playlist.getSong(0));
+        assertNull(playlist.getSong(-1));
+        assertNull(playlist.getSong(1));
+    }
+
+    @Test
+    void getSongsSnapshotAndEmptyPlaylist() {
+        Playlist playlist = new Playlist("Favorites");
+        Song song = new Song("Mirrors", "Justin Timberlake", "Pop");
+        playlist.addSong(song);
+
+        Song[] snapshot = playlist.getSongs();
+
+        assertEquals(1, snapshot.length);
+        assertEquals(song, snapshot[0]);
+
+        snapshot[0] = null;
+
+        assertEquals(song, playlist.getSong(0));
+
+        Playlist emptyPlaylist = new Playlist("Empty");
+        assertEquals(0, emptyPlaylist.getSongs().length);
+        assertEquals(0, emptyPlaylist.size());
+    }
 }
