@@ -10,141 +10,161 @@ public class PlaylistManager {
         searchingHistory = new LinkedChain<>();
     }
 
-//Creates a new playlist
-public boolean createPlaylist(String name) {
- if (name == null || name.trim().isEmpty()) {
-     throw new IllegalArgumentException("Invalid playlist name");
- }
+    // Creates a new playlist
+    public boolean createPlaylist(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Invalid playlist name");
+        }
 
- if (findPlaylist(name) != null) {
-     return false;
- }
+        if (findPlaylist(name) != null) {
+            return false;
+        }
 
- return playlists.add(new Playlist(name));
-}
+        return playlists.add(new Playlist(name));
+    }
 
-//Removes an existing playlist
-public boolean removePlaylist(String name) {
- Playlist playlist = findPlaylist(name);
+    // Removes an existing playlist
+    public boolean removePlaylist(String name) {
+        Playlist playlist = findPlaylist(name);
 
- if (playlist == null) {
-     return false;
- }
+        if (playlist == null) {
+            return false;
+        }
 
- return playlists.remove(playlist);
-}
+        return playlists.remove(playlist);
+    }
 
-//Finds a playlist by name
-public Playlist findPlaylist(String name) {
- if (name == null || name.trim().isEmpty()) {
-     return null;
- }
+    // Finds a playlist by name
+    public Playlist findPlaylist(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return null;
+        }
 
- for (int i = 0; i < playlists.size(); i++) {
-     Playlist playlist = playlists.get(i);
+        for (int i = 0; i < playlists.size(); i++) {
+            Playlist playlist = playlists.get(i);
 
-     if (playlist.getName().equals(name)) {
-         return playlist;
-     }
- }
+            if (playlist.getName().equals(name)) {
+                return playlist;
+            }
+        }
 
- return null;
-}
-//Adds a song to an existing playlist
-public boolean addSongToPlaylist(String playlistName, Song song) {
- if (song == null) {
-     throw new IllegalArgumentException("Song cannot be null");
- }
+        return null;
+    }
 
- Playlist playlist = findPlaylist(playlistName);
+    // Adds a song to an existing playlist
+    public boolean addSongToPlaylist(String playlistName, Song song) {
+        if (song == null) {
+            throw new IllegalArgumentException("Song cannot be null");
+        }
 
- if (playlist == null) {
-     return false;
- }
+        Playlist playlist = findPlaylist(playlistName);
 
- return playlist.addSong(song);
-}
+        if (playlist == null) {
+            return false;
+        }
 
-//Removes a song from an existing playlist
-public boolean removeSongFromPlaylist(String playlistName, Song song) {
- if (song == null) {
-     throw new IllegalArgumentException("Song cannot be null");
- }
+        return playlist.addSong(song);
+    }
 
- Playlist playlist = findPlaylist(playlistName);
+    // Removes a song from an existing playlist
+    public boolean removeSongFromPlaylist(String playlistName, Song song) {
+        if (song == null) {
+            throw new IllegalArgumentException("Song cannot be null");
+        }
 
- if (playlist == null) {
-     return false;
- }
+        Playlist playlist = findPlaylist(playlistName);
 
- return playlist.removeSong(song);
-}
-//Searches for a song by title
-public Song searchByTitle(String title) {
- if (title == null || title.trim().isEmpty()) {
-     throw new IllegalArgumentException("Invalid song title");
- }
+        if (playlist == null) {
+            return false;
+        }
 
- recordSearch(title);
+        return playlist.removeSong(song);
+    }
 
- for (int i = 0; i < playlists.size(); i++) {
-     Playlist playlist = playlists.get(i);
-     Song song = playlist.findSong(title);
+    // Searches for a song by title
+    public Song searchByTitle(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Invalid song title");
+        }
 
-     if (song != null) {
-         return song;
-     }
- }
+        recordSearch(title);
 
- return null;
-}
+        for (int i = 0; i < playlists.size(); i++) {
+            Playlist playlist = playlists.get(i);
+            Song song = playlist.findSong(title);
 
-//Searches for a song by artist
-public Song searchByArtist(String artist) {
- if (artist == null || artist.trim().isEmpty()) {
-     throw new IllegalArgumentException("Invalid artist name");
- }
+            if (song != null) {
+                return song;
+            }
+        }
 
- recordSearch(artist);
+        return null;
+    }
 
- for (int i = 0; i < playlists.size(); i++) {
-     Playlist playlist = playlists.get(i);
+    // Searches for a song by artist
+    public Song searchByArtist(String artist) {
+        if (artist == null || artist.trim().isEmpty()) {
+            throw new IllegalArgumentException("Invalid artist name");
+        }
 
-     for (int j = 0; j < playlist.size(); j++) {
-         Song song = playlist.getSong(j);
+        String searchArtist = artist.trim();
+        recordSearch(searchArtist);
 
-         if (song.getArtist().equalsIgnoreCase(artist)) {
-             return song;
-         }
-     }
- }
+        for (int i = 0; i < playlists.size(); i++) {
+            Playlist playlist = playlists.get(i);
 
- return null;
-}
-//Records a song in the listening history
-public void recordListening(Song song) {
- if (song == null) {
-     throw new IllegalArgumentException("Song cannot be null");
- }
+            for (int j = 0; j < playlist.size(); j++) {
+                Song song = playlist.getSong(j);
 
- listeningHistory.addToEnd(song);
-}
+                if (song.getArtist().equalsIgnoreCase(searchArtist)) {
+                    return song;
+                }
+            }
+        }
 
-//Records a search in the search history
-public void recordSearch(String searchText) {
- if (searchText == null || searchText.trim().isEmpty()) {
-     throw new IllegalArgumentException("Invalid search text");
- }
+        return null;
+    }
 
- searchingHistory.addToEnd(searchText);
-}
-//Returns how many times a song has been played
-public int getPlayCount(Song song) {
- if (song == null) {
-     throw new IllegalArgumentException("Song cannot be null");
- }
+    // Records a song in the listening history
+    public void recordListening(Song song) {
+        if (song == null) {
+            throw new IllegalArgumentException("Song cannot be null");
+        }
 
- return listeningHistory.count(song);
-}
+        listeningHistory.addToEnd(song);
+    }
 
+    // Records a search in the search history
+    public void recordSearch(String searchText) {
+        if (searchText == null || searchText.trim().isEmpty()) {
+            throw new IllegalArgumentException("Invalid search text");
+        }
+
+        searchingHistory.addToEnd(searchText);
+    }
+
+    // Returns how many times a song has been played
+    public int getPlayCount(Song song) {
+        if (song == null) {
+            throw new IllegalArgumentException("Song cannot be null");
+        }
+
+        return listeningHistory.count(song);
+    }
+
+    // Returns a snapshot of the listening history
+    public Song[] getListeningHistory() {
+        Song[] historySnapshot =
+            new Song[listeningHistory.size()];
+
+        return listeningHistory.toArray(historySnapshot);
+    }
+
+    // Returns a snapshot of the search history
+    public String[] getSearchHistory() {
+        String[] historySnapshot =
+            new String[searchingHistory.size()];
+
+        return searchingHistory.toArray(historySnapshot);
+    }
 }

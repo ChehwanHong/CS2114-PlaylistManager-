@@ -233,4 +233,116 @@ public void testGetPlayCountNull() {
         () -> manager.getPlayCount(null));
 }
 
+@Test
+public void testGetListeningHistory() {
+    PlaylistManager manager = new PlaylistManager();
+    Song song = new Song("Dynamite", "BTS", "Pop");
+
+    manager.recordListening(song);
+    manager.recordListening(song);
+
+    Song[] history = manager.getListeningHistory();
+
+    assertEquals(2, history.length);
+    assertEquals(song, history[0]);
+    assertEquals(song, history[1]);
+}
+
+@Test
+public void testGetListeningHistoryEmpty() {
+    PlaylistManager manager = new PlaylistManager();
+
+    assertEquals(0, manager.getListeningHistory().length);
+}
+
+@Test
+public void testGetListeningHistorySnapshot() {
+    PlaylistManager manager = new PlaylistManager();
+    Song song = new Song("Dynamite", "BTS", "Pop");
+
+    manager.recordListening(song);
+    Song[] history = manager.getListeningHistory();
+    history[0] = null;
+
+    assertEquals(1, manager.getListeningHistory().length);
+    assertEquals(song, manager.getListeningHistory()[0]);
+}
+
+@Test
+public void testGetSearchHistory() {
+    PlaylistManager manager = new PlaylistManager();
+
+    manager.recordSearch("BTS");
+    manager.recordSearch("Dynamite");
+
+    String[] history = manager.getSearchHistory();
+
+    assertEquals(2, history.length);
+    assertEquals("BTS", history[0]);
+    assertEquals("Dynamite", history[1]);
+}
+
+@Test
+public void testGetSearchHistoryEmpty() {
+    PlaylistManager manager = new PlaylistManager();
+
+    assertEquals(0, manager.getSearchHistory().length);
+}
+
+@Test
+public void testGetSearchHistorySnapshot() {
+    PlaylistManager manager = new PlaylistManager();
+    manager.recordSearch("BTS");
+
+    String[] history = manager.getSearchHistory();
+    history[0] = "Changed";
+
+    assertEquals("BTS", manager.getSearchHistory()[0]);
+}
+
+@Test
+public void testSearchByArtistWithSpaces() {
+    PlaylistManager manager = new PlaylistManager();
+    manager.createPlaylist("Favorites");
+
+    Song song = new Song("Dynamite", "BTS", "Pop");
+    manager.addSongToPlaylist("Favorites", song);
+
+    assertEquals(song, manager.searchByArtist("  BTS  "));
+}
+
+@Test
+public void testSearchByArtistIgnoringCase() {
+    PlaylistManager manager = new PlaylistManager();
+    manager.createPlaylist("Favorites");
+
+    Song song = new Song("Dynamite", "BTS", "Pop");
+    manager.addSongToPlaylist("Favorites", song);
+
+    assertEquals(song, manager.searchByArtist("bts"));
+}
+
+@Test
+public void testGetSongsSnapshot() {
+    Playlist playlist = new Playlist("Favorites");
+    Song song = new Song("Dynamite", "BTS", "Pop");
+    playlist.addSong(song);
+
+    Song[] songs = playlist.getSongs();
+
+    assertEquals(1, songs.length);
+    assertEquals(song, songs[0]);
+
+    songs[0] = null;
+
+    assertEquals(song, playlist.getSong(0));
+}
+
+@Test
+public void testGetSongsEmpty() {
+    Playlist playlist = new Playlist("Favorites");
+
+    assertEquals(0, playlist.getSongs().length);
+}
+
 }

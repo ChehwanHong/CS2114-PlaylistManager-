@@ -19,7 +19,7 @@ A playlist manager application for CS 2114 Project 2, Group 24.
 
 
 
-Next steps —lay out what you will do next to extend this prototype toward the final. 
+Next steps —lay out what you will do next to extend this prototype toward the final.
 
 
 
@@ -43,5 +43,3 @@ We will need tests for viewing songs and search history, as well as stretch goal
 
 
 Who does what? Which team member owns each remaining item.
-
-

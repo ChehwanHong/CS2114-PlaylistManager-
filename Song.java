@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Song {
 
     private final String title;
@@ -46,7 +48,7 @@ public class Song {
 
         return title.equalsIgnoreCase(that.title)
             && artist.equalsIgnoreCase(that.artist)
-            && java.util.Objects.equals(genre, that.genre);
+            && Objects.equals(genre, that.genre);
     }
 
     @Override
