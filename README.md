@@ -68,11 +68,12 @@ We are attempting to do listening statistics, advanced filtering, and mood categ
 
 What new tests will you need? The methods and bad-input cases the added work must cover.
 
-Our JUnit tests for Song, Playlist, and PlaylistManager have passed. We have also tested the main features through the console menu. We will need tests for viewing songs and search history, as well as stretch goals we implement. Song and playlist viewing tests will require making small playlists with a small search history, and ensuring our outputs match what is expected, while covering cases of null (ex: a playlist without a search history yet). Stretch goals we plan to implement will require test cases to make sure we can properly filter by artist and genre most importantly. We would need to cover input cases of searching for genres/artists that don’t exist in the playlist or at all. We also would need to cover returning the most played song in an empty playlist, while testing to make sure the most played song(s) is returned.
+Our JUnit tests for Song, Playlist, and PlaylistManager have passed. We have also tested the main features through the console menu. We will continue testing edge cases and add new tests for any stretch goals we implement, especially advanced filtering and mood categories. These tests will include invalid inputs, empty playlists, and searches that return no matching songs.
 
 
 
 Who does what? Which team member owns each remaining item.
+Chehwan will continue testing the PlaylistManager and Main classes and fix any remaining bugs. Josiah will work on improving Playlist features and related tests. Kaitlyn will help test Song functionality and support advanced filtering. Luke will help with console menu testing and README updates. The team will work together on the remaining stretch goals.
 
 ## Attribution
 
