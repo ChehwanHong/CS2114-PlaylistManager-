@@ -1,5 +1,18 @@
 # CS2114-PlaylistManager-
 A playlist manager application for CS 2114 Project 2, Group 24.
+
+## How to Run
+
+1. Open the project in Eclipse.
+2. Run Main.java as a Java Application.
+3. Follow the console menu to use the Playlist Manager.
+
+## How to Run Tests
+
+1. Right-click SongTest.java, PlaylistTest.java, or PlaylistManagerTest.java.
+2. Select Run As → JUnit Test.
+3. Check that all tests pass.
+
 ## Reflection
 
 ### What changed from our specification?
