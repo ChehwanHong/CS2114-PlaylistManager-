@@ -72,7 +72,7 @@ Who does what? Which team member owns each remaining item.
 | PlaylistManager.java | Chehwan | Implemented the class. |
 | PlaylistManagerTest.java | Chehwan | Wrote tests. |
 | Main.java | Luke | Implemented the console menu. |
-| README.md | Chehwan and Luke | Wrote and revised the Reflection, Next Steps, and Attribution sections. |
+| README | Chehwan and Luke | Wrote and revised the Reflection, Next Steps, and Attribution sections. |
 | LinkedChain.java | Course-provided | Used without modifications. |
 
 ### GenAI Usage
