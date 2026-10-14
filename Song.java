@@ -14,7 +14,11 @@ public class Song {
 
     this.title = title.trim();
     this.artist = artist.trim();
-    this.genre = (genre == null || genre.trim().isEmpty()) ? "Unknown" : genre.trim();
+    this.genre = genre;
+  }
+
+  public String getTitle(){
+    return title;
   }
 
   public String getArtist(){
@@ -36,6 +40,7 @@ public class Song {
     Song that = (Song) other;
     return title.equalsIgnoreCase(that.title)
       && artist.equalsIgnoreCase(that.artist);
+      && java.util.Objecs.equals(genre, that.genre);
   }
 
   @Override 
