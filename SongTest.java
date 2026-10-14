@@ -75,3 +75,32 @@ public class SongTest {
   }
             
 }
+
+@Test
+void constructorWhitespaceTitle() {
+    assertThrows(IllegalArgumentException.class,
+        () -> new Song("   ", "Justin Timberlake", "Pop"));
+}
+
+@Test
+void constructorWhitespaceArtist() {
+    assertThrows(IllegalArgumentException.class,
+        () -> new Song("Mirrors", "   ", "Pop"));
+}
+
+@Test
+void equalsIgnoreCase() {
+    Song song1 = new Song("Mirrors", "Justin Timberlake", "Pop");
+    Song song2 = new Song("MIRRORS", "JUSTIN TIMBERLAKE", "Pop");
+
+    assertTrue(song1.equals(song2));
+}
+
+@Test
+void equalsDifferentGenre() {
+    Song song1 = new Song("Mirrors", "Justin Timberlake", "Pop");
+    Song song2 = new Song("Mirrors", "Justin Timberlake", "Rock");
+
+    assertFalse(song1.equals(song2));
+}
+
