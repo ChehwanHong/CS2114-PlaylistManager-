@@ -69,9 +69,10 @@ Who does what? Which team member owns each remaining item.
 | SongTest.java | Kaitlyn | Wrote tests. |
 | Playlist.java | Josiah | Wrote the class. |
 | PlaylistTest.java | Josiah | Wrote the tests. |
-| PlaylistManager.java | Chehwan Hong | Implemented the class. |
-| PlaylistManagerTest.java | Chehwan Hong | Wrote tests. |
+| PlaylistManager.java | Chehwan | Implemented the class. |
+| PlaylistManagerTest.java | Chehwan | Wrote tests. |
 | Main.java | Luke | Implemented the console menu. |
+| README.md | Chehwan and Luke | Wrote and revised the Reflection, Next Steps, and Attribution sections. |
 | LinkedChain.java | Course-provided | Used without modifications. |
 
 ### GenAI Usage
