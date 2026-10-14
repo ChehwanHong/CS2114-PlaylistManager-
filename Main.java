@@ -216,7 +216,7 @@ public class Main
 
                     if (listeningHistory.length == 0)
                     {
-                        System.out.println("Listening history is empty.");
+                        System.out.println("No listening history yet.");
                     }
                     else
                     {
@@ -234,7 +234,7 @@ public class Main
 
                     if (searchHistory.length == 0)
                     {
-                        System.out.println("Search history is empty.");
+                        System.out.println("No search history yet.");
                     }
                     else
                     {
@@ -278,7 +278,7 @@ public class Main
                     break;
 
                 default:
-                    System.out.println("Invalid menu choice.");
+                    System.out.println("Please enter a valid option.");
                     break;
             }
         }
