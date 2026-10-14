@@ -27,7 +27,6 @@ public class PlaylistManagerTest {
         assertTrue(manager.createPlaylist("Favorites"));
         assertFalse(manager.createPlaylist("Favorites"));
     }
-}
 @Test
 public void testFindPlaylist() {
     PlaylistManager manager = new PlaylistManager();
@@ -232,4 +231,6 @@ public void testGetPlayCountNull() {
 
     assertThrows(IllegalArgumentException.class,
         () -> manager.getPlayCount(null));
+}
+
 }

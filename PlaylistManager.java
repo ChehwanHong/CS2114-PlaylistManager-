@@ -9,7 +9,7 @@ public class PlaylistManager {
         listeningHistory = new LinkedChain<>();
         searchingHistory = new LinkedChain<>();
     }
-}
+
 //Creates a new playlist
 public boolean createPlaylist(String name) {
  if (name == null || name.trim().isEmpty()) {
@@ -145,4 +145,6 @@ public int getPlayCount(Song song) {
  }
 
  return listeningHistory.count(song);
+}
+
 }

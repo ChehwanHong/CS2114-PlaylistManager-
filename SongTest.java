@@ -74,7 +74,6 @@ public class SongTest {
     assertNotNull(new Song("A", "B", "C").toString());
   }
             
-}
 
 @Test
 void constructorWhitespaceTitle() {
@@ -104,3 +103,4 @@ void equalsDifferentGenre() {
     assertFalse(song1.equals(song2));
 }
 
+}
