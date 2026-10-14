@@ -35,14 +35,23 @@ public class Main
                     System.out.print("Playlist name: ");
                     String name = scanner.nextLine();
 
-                    if (manager.createPlaylist(name))
+                    try
                     {
-                        System.out.println("Playlist created!");
+                        if (manager.createPlaylist(name))
+                        {
+                            System.out.println("Playlist created!");
+                        }
+                        else
+                        {
+                            System.out.println("Could not create playlist.");
+                        }
                     }
-                    else
+                    catch (IllegalArgumentException e)
                     {
-                        System.out.println("Could not create playlist.");
+                        System.out.println(
+                            "Invalid playlist name. Please try again.");
                     }
+
                     break;
 
                 case "2":
@@ -131,15 +140,23 @@ public class Main
                     System.out.print("Enter song title: ");
                     String searchTitle = scanner.nextLine();
 
-                    Song foundSong = manager.searchByTitle(searchTitle);
+                    try
+                    {
+                        Song foundSong = manager.searchByTitle(searchTitle);
 
-                    if (foundSong != null)
-                    {
-                        System.out.println("Found: " + foundSong);
+                        if (foundSong != null)
+                        {
+                            System.out.println("Found: " + foundSong);
+                        }
+                        else
+                        {
+                            System.out.println("Song not found.");
+                        }
                     }
-                    else
+                    catch (IllegalArgumentException e)
                     {
-                        System.out.println("Song not found.");
+                        System.out
+                            .println("Invalid song title. Please try again.");
                     }
                     break;
 
@@ -147,15 +164,24 @@ public class Main
                     System.out.print("Enter artist name: ");
                     String searchArtist = scanner.nextLine();
 
-                    Song artistSong = manager.searchByArtist(searchArtist);
+                    try
+                    {
+                        Song artistSong = manager.searchByArtist(searchArtist);
 
-                    if (artistSong != null)
-                    {
-                        System.out.println("Found: " + artistSong);
+                        if (artistSong != null)
+                        {
+                            System.out.println("Found: " + artistSong);
+                        }
+                        else
+                        {
+                            System.out
+                                .println("No songs found for this artist.");
+                        }
                     }
-                    else
+                    catch (IllegalArgumentException e)
                     {
-                        System.out.println("No songs found for this artist.");
+                        System.out
+                            .println("Invalid artist name. Please try again.");
                     }
                     break;
 
@@ -163,16 +189,25 @@ public class Main
                     System.out.print("Enter song title: ");
                     String playTitle = scanner.nextLine();
 
-                    Song playSong = manager.searchByTitle(playTitle);
+                    try
+                    {
+                        Song playSong = manager.searchByTitle(playTitle);
 
-                    if (playSong != null)
-                    {
-                        manager.recordListening(playSong);
-                        System.out.println("Listening recorded: " + playSong);
+                        if (playSong != null)
+                        {
+                            manager.recordListening(playSong);
+                            System.out
+                                .println("Listening recorded: " + playSong);
+                        }
+                        else
+                        {
+                            System.out.println("Song not found.");
+                        }
                     }
-                    else
+                    catch (IllegalArgumentException e)
                     {
-                        System.out.println("Song not found.");
+                        System.out
+                            .println("Invalid song title. Please try again.");
                     }
                     break;
 
@@ -216,16 +251,24 @@ public class Main
                     System.out.print("Enter song title: ");
                     String statsTitle = scanner.nextLine();
 
-                    Song statsSong = manager.searchByTitle(statsTitle);
+                    try
+                    {
+                        Song statsSong = manager.searchByTitle(statsTitle);
 
-                    if (statsSong != null)
-                    {
-                        int playCount = manager.getPlayCount(statsSong);
-                        System.out.println("Play count: " + playCount);
+                        if (statsSong != null)
+                        {
+                            int playCount = manager.getPlayCount(statsSong);
+                            System.out.println("Play count: " + playCount);
+                        }
+                        else
+                        {
+                            System.out.println("Song not found.");
+                        }
                     }
-                    else
+                    catch (IllegalArgumentException e)
                     {
-                        System.out.println("Song not found.");
+                        System.out
+                            .println("Invalid song title. Please try again.");
                     }
                     break;
 
