@@ -292,11 +292,29 @@ public class Main
         System.out.print("Song title: ");
         String title = scanner.nextLine();
 
+        if (title.trim().isEmpty())
+        {
+            System.out.println("Invalid song title.");
+            return null;
+        }
+
         System.out.print("Artist: ");
         String artist = scanner.nextLine();
 
+        if (artist.trim().isEmpty())
+        {
+            System.out.println("Invalid artist.");
+            return null;
+        }
+
         System.out.print("Genre: ");
         String genre = scanner.nextLine();
+
+        if (genre.trim().isEmpty())
+        {
+            System.out.println("Invalid genre.");
+            return null;
+        }
 
         try
         {
@@ -308,4 +326,5 @@ public class Main
             return null;
         }
     }
+
 }
