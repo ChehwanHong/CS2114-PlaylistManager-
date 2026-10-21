@@ -91,4 +91,8 @@ Chehwan will continue testing the PlaylistManager and Main classes and fix any r
 
 ### GenAI Usage
 
-We used GenAI to help implement and debug Java code. We reviewed the suggestions and tested the implemented features in Eclipse.
+We used GenAI to assist with debugging, reviewing Java code, and improving input validation throughout the project. For example, GenAI helped us identify a better way to handle invalid song inputs in the readSong() method of Main.java. GenAI was used as a supporting tool, while the final implementation and design decisions were made by us.
+
+## System Diagram
+
+![Playlist Manager System Diagram](system-diagram.png)
